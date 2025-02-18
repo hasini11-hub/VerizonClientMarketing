@@ -198,7 +198,7 @@ with col_chart2:
 st.markdown(
     """
     <hr style="margin-top: 30px;">
-    <p style="text-align: center; font-size: 12px; font-weight: bold;">
+    <p style="text-align: center; font-size: 15px; font-weight: bold;">
         GCB Services L.L.C. CONFIDENTIAL and PROPRIETARY
     </p>
     """, 
