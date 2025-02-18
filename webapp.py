@@ -44,7 +44,11 @@ st.title("Budget Calculator")
 st.subheader("Enter Input Values")
 # Extract `user_id` from the URL (e.g., ?user_id=1234abcd)
 user_id = st.query_params.get_all("user_id")
-email = get_email_by_user_id(user_id[0])
+try:
+    email = get_email_by_user_id(user_id[0])
+except Exception:
+    st.error("Link broken")
+    email = "Not found"
 new_build = st.number_input("No.Of Sites", min_value=1, step=1, value=150)
 competitor_pricing = st.number_input("Competitor Pricing ($)", min_value=1, step=1, value=10000)
 if st.button("Get Quote") or new_build or competitor_pricing:
