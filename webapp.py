@@ -122,7 +122,7 @@ with col_right:
     })
 
     # Apply styling
-    df_table2_styled = df_table2.style.map(highlight_green, subset=["Budget Saved ($)", "% Savings"])
+    df_table2_styled = df_table2.style.map(highlight_green, subset=["Budget Saved ($)", "% Savings"]).hide(axis="index")
 
     # Display the styled DataFrame in Streamlit
     st.markdown(df_table2_styled.to_html(index=False, escape=False), unsafe_allow_html=True)
