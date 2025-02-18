@@ -193,3 +193,14 @@ with col_chart2:
     ax2_right.set_ylim(0, max(future_sites_funded + 10, future_sites_funded * 1.2))
 
     st.pyplot(fig2)
+
+# Footer
+st.markdown(
+    """
+    <hr style="margin-top: 30px;">
+    <p style="text-align: center; font-size: 12px; font-weight: bold;">
+        GCB Services L.L.C. CONFIDENTIAL and PROPRIETARY
+    </p>
+    """, 
+    unsafe_allow_html=True
+)
