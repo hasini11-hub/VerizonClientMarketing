@@ -197,13 +197,13 @@ with col_chart2:
         if value > 0:
             ax2_left.text(bar.get_x() + bar.get_width()/2, 
                           bar.get_height() - (bar.get_height() * 0.15),
-                          f"{value:.0f}%", ha='center', fontsize=7, fontweight='bold', color='white', va='top')
+                          f"{value:.0f}%", ha='center', fontsize=8, fontweight='bold', color='white', va='top')
 
     for bar, value in zip(bars_right, values_right):
         if value > 0:
             ax2_right.text(bar.get_x() + bar.get_width()/2, 
                            bar.get_height() - (bar.get_height() * 0.15),
-                           f"{value:,}", ha='center', fontsize=7, fontweight='bold', color='white', va='top')
+                           f"{value:,}", ha='center', fontsize=8, fontweight='bold', color='white', va='top')
 
     # Ensure Y-axes are aligned properly
     ax2_left.set_ylim(0, max(percent_savings + 10, 100))  # Add buffer for visibility
