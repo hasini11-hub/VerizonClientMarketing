@@ -6,14 +6,23 @@ import mysql.connector
 # Set page to full-screen layout
 st.set_page_config(layout="wide")
 
+# Function to get email based on user_id
+def get_email_by_user_id(user_id, connection):
+    cursor = connection.cursor()
+    cursor.execute("SELECT email FROM links WHERE link LIKE %s", (f"%{user_id}%",))
+    email = cursor.fetchone()
+    cursor.close()
+    return email[0] if email else None
+
 # Function to insert data into MySQL table
-def insert_data(email, site_number, comp_price):
+def insert_data(user_id, site_number, comp_price):
     conn = mysql.connector.connect(
         host="gcbdallas.caqfykoqtrvk.us-east-1.rds.amazonaws.com",
         user="Dallas_2024",
         password="GCBDallas$223",
         database="VerizonClientMarketing"
     )
+    email = get_email_by_user_id(user_id, conn)
     cursor = conn.cursor()
     cursor.execute("INSERT INTO clientInputs (email, siteNumber, compPrice) VALUES (%s, %s, %s)", 
                    (email if email else None, site_number, comp_price))
@@ -21,18 +30,20 @@ def insert_data(email, site_number, comp_price):
     conn.close()
 
 # Static GCB Quote
-GCB_QUOTE = 5500  # Static value
+GCB_QUOTE = 5500  # Static value email = get_email_by_user_id(user_id, conn)
 
 st.title("Verizon Budget Calculator")
 
 # User Inputs in Yellow Highlighted Table (Table 1)
 st.subheader("Enter Input Values")
-
+# Extract `user_id` from the URL (e.g., ?user_id=1234abcd)
+url_params = st.experimental_get_query_params()
+user_id = url_params.get("user_id", [None])[0]
 new_build = st.number_input("No.Of Sites", min_value=1, step=1, value=150)
 competitor_pricing = st.number_input("Competitor Pricing ($)", min_value=1, step=1, value=10000)
 
 if st.button("Get Quote") or new_build or competitor_pricing:
-    insert_data("temp",new_build, competitor_pricing)
+    insert_data(user_id, new_build, competitor_pricing)
 
 # Layout for side-by-side tables and graphs
 col1, col2 = st.columns([1, 1])
