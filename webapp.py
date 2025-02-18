@@ -68,8 +68,6 @@ def insert_data(email, site_number, comp_price):
 # Static GCB Quote
 GCB_QUOTE = 5500
 
-#st.title("Budget Calculator")
-
 # Layout: Inputs on left, Tables in the middle, and Logo on the right
 col_left, col_middle, col_right = st.columns([1, 2, 1])
 
@@ -85,12 +83,16 @@ with col_left:
     )
 
     user_id = st.query_params.get_all("session_id")
-    try:
-        email = get_email_by_user_id(user_id[0])
-    except Exception:
-        email = "Not found"
+    if user_id:
+        try:
+            email = get_email_by_user_id(user_id[0])
+        except Exception:
+            email = "Not found"
+    else:
+        email = "No user ID found"
+
     if new_build or competitor_pricing:
-        insert_data(email, new_build, competitor_pricing)
+        insert_data(user_id, new_build, competitor_pricing)
 
     # Budget Calculations
     competitor_budget = new_build * competitor_pricing
@@ -157,16 +159,6 @@ with col_right:
     # Adjust the size of the logo and position it to the right
     st.image("logo.png", width=150)  # Adjust width as needed
 
-# Footer
-st.markdown(
-    """
-    <hr style="margin-top: 30px;">
-    <p style="text-align: center; font-size: 15px; font-weight: bold;">
-        GCB Services L.L.C. CONFIDENTIAL and PROPRIETARY
-    </p>
-    """, 
-    unsafe_allow_html=True
-)
 # Align Charts Side by Side
 col_chart1, col_chart2 = st.columns(2)
 
