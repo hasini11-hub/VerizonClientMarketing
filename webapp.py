@@ -142,8 +142,8 @@ with col_middle:
 
 # Right column: Display the Logo
 with col_right:
-    # Adjust the size of the logo and position it to the right
-    st.image("logo.png", width=150)  # Adjust width as needed
+    # Adjust the size of the logo and position it to the right, increasing width and height by 50%
+    st.image("logo.png", width=150 * 1.5, height=150 * 1.5)  # Adjust width and height as needed
 
 # Align Charts Side by Side
 col_chart1, col_chart2 = st.columns(2)
