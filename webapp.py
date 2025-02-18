@@ -41,7 +41,7 @@ url_params = st.experimental_get_query_params()
 user_id = url_params.get("user_id", [None])[0]
 new_build = st.number_input("No.Of Sites", min_value=1, step=1, value=150)
 competitor_pricing = st.number_input("Competitor Pricing ($)", min_value=1, step=1, value=10000)
-
+st.write(user_id)
 if st.button("Get Quote") or new_build or competitor_pricing:
     insert_data(user_id, new_build, competitor_pricing)
 
