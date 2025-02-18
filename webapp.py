@@ -3,6 +3,8 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import mysql.connector
 import requests
+import io
+from PIL import Image
 
 # Set page to full-screen layout
 st.set_page_config(layout="wide")
@@ -11,8 +13,8 @@ st.set_page_config(layout="wide")
 def get_email_by_user_id(user_id):
     conn = mysql.connector.connect(
         host="gcbdallas.caqfykoqtrvk.us-east-1.rds.amazonaws.com",
-        user="Dallas_2024", 
-        password="GCBDallas$223", 
+        user="Dallas_2024",
+        password="GCBDallas$223",
         database="VerizonClientMarketing"
     )
     cursor = conn.cursor()
@@ -20,6 +22,7 @@ def get_email_by_user_id(user_id):
     email = cursor.fetchone()
     cursor.close()
     return email[0] if email else None
+
 def get_user_ip():
     """Fetch the public IP of the user"""
     try:
@@ -27,24 +30,24 @@ def get_user_ip():
         return ip
     except:
         return "Unknown"
-user_ip = get_user_ip()
-
+    
 # Function to insert data into MySQL table
-def insert_data(email, site_number, comp_price):
+def insert_data(user_id, site_number, comp_price):
     conn = mysql.connector.connect(
         host="gcbdallas.caqfykoqtrvk.us-east-1.rds.amazonaws.com",
         user="Dallas_2024",
-        password="GCBDallas$223", 
+        password="GCBDallas$223",
         database="VerizonClientMarketing"
     )
     
     cursor = conn.cursor()
     user_ip = get_user_ip()
-
-    cursor.execute("INSERT INTO clientInputs (email, siteNumber, compPrice, userIP) VALUES (%s, %s, %s, %s)", 
+    cursor.execute("INSERT INTO clientInputs (email, siteNumber, compPrice, clientIP) VALUES (%s, %s, %s, %s)", 
                    (email if email else "cantgetemail", site_number, comp_price, user_ip))
     conn.commit()
     conn.close()
+
+
 
 
 # Static GCB Quote
@@ -69,7 +72,7 @@ st.markdown(
 col_left, col_right = st.columns([1, 1.5])
 
 with col_left:
-    st.subheader("Enter Input Values")
+    st.subheader("Calculate savings")
 
     new_build = st.number_input(
         "No. of Sites", min_value=1, step=1, value=150, format="%d"
@@ -79,8 +82,14 @@ with col_left:
         "Competitor Pricing ($)", min_value=1, step=1, value=10000, format="%d"
     )
 
-    if st.button("Calculate Savings"):
-        pass
+    # Extract `user_id` from the URL (e.g., ?user_id=1234abcd)
+    user_id = st.query_params.get_all("session_id")
+    try:
+        email = get_email_by_user_id(user_id[0])
+    except Exception:
+        email = "Not found"
+    if new_build or competitor_pricing:
+        insert_data(user_id, new_build, competitor_pricing)
 
     # Budget Calculations
     competitor_budget = new_build * competitor_pricing
@@ -113,7 +122,7 @@ with col_right:
     })
 
     # Apply styling
-    df_table2_styled = df_table2.style.applymap(highlight_green, subset=["Budget Saved ($)", "% Savings"]).hide(axis="index")
+    df_table2_styled = df_table2.style.map(highlight_green, subset=["Budget Saved ($)", "% Savings"])
 
     # Display the styled DataFrame in Streamlit
     st.markdown(df_table2_styled.to_html(index=False, escape=False), unsafe_allow_html=True)
