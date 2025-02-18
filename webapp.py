@@ -37,7 +37,7 @@ st.title("Verizon Budget Calculator")
 # User Inputs in Yellow Highlighted Table (Table 1)
 st.subheader("Enter Input Values")
 # Extract `user_id` from the URL (e.g., ?user_id=1234abcd)
-url_params = st.experimental_get_query_params()
+url_params = st.query_params()
 user_id = url_params.get("user_id", [None])[0]
 new_build = st.number_input("No.Of Sites", min_value=1, step=1, value=150)
 competitor_pricing = st.number_input("Competitor Pricing ($)", min_value=1, step=1, value=10000)
