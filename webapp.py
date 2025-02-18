@@ -70,21 +70,8 @@ GCB_QUOTE = 5500
 
 #st.title("Budget Calculator")
 
-# Custom CSS to reduce input box width
-st.markdown(
-    """
-    <style>
-    div[data-baseweb="input"] {
-        width: 80% !important; 
-        margin-bottom: 5px;
-    }
-    </style>
-    """, 
-    unsafe_allow_html=True
-)
-
-# Layout: Inputs on left, Tables and Charts on right
-col_left, col_right = st.columns([1, 1.5])
+# Layout: Inputs on left, Tables in the middle, and Logo on the right
+col_left, col_middle, col_right = st.columns([1, 2, 1])
 
 with col_left:
     st.subheader("Calculate savings")
@@ -97,14 +84,13 @@ with col_left:
         "Competitor Pricing ($)", min_value=1, step=1, value=10000, format="%d"
     )
 
-    # Extract `user_id` from the URL (e.g., ?user_id=1234abcd)
     user_id = st.query_params.get_all("session_id")
     try:
         email = get_email_by_user_id(user_id[0])
     except Exception:
         email = "Not found"
     if new_build or competitor_pricing:
-        insert_data(email, new_build, competitor_pricing)
+        insert_data(user_id, new_build, competitor_pricing)
 
     # Budget Calculations
     competitor_budget = new_build * competitor_pricing
@@ -113,8 +99,8 @@ with col_left:
     percent_savings = round((budget_saved / competitor_budget) * 100, 2) if competitor_budget != 0 else 0
     future_sites_funded = int(budget_saved / GCB_QUOTE) if GCB_QUOTE != 0 else 0
 
-# Right section: Data Tables and Charts
-with col_right:
+# Middle column: Data Tables and Charts
+with col_middle:
     st.subheader("Budget Summary")
 
     # Custom CSS for increasing table size
@@ -166,7 +152,21 @@ with col_right:
 
     st.markdown(f'<div class="custom-table">{df_table3.to_html(index=False, escape=False)}</div>', unsafe_allow_html=True)
 
+# Right column: Display the Logo
+with col_right:
+    # Adjust the size of the logo and position it to the right
+    st.image("path/to/logo.png", width=150)  # Adjust width as needed
 
+# Footer
+st.markdown(
+    """
+    <hr style="margin-top: 30px;">
+    <p style="text-align: center; font-size: 15px; font-weight: bold;">
+        GCB Services L.L.C. CONFIDENTIAL and PROPRIETARY
+    </p>
+    """, 
+    unsafe_allow_html=True
+)
 # Align Charts Side by Side
 col_chart1, col_chart2 = st.columns(2)
 
