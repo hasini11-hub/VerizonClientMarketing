@@ -162,7 +162,7 @@ with col_chart1:
     
     bars = ax1.bar(labels, values, color=["#1f77b4", "#ff7f0e", "#2ca02c"], width=0.5)
     ax1.set_ylabel("Amount ($)")
-    ax1.set_title("Budget Comparison", fontsize=9)
+    ax1.set_title("Budget Comparison", fontsize=12)
 
     # Add labels inside the bars
     for bar, value in zip(bars, values):
@@ -190,7 +190,7 @@ with col_chart2:
     # Labels and Titles
     ax2_left.set_ylabel("% Savings", color="#ff7f0e", fontsize=9)
     ax2_right.set_ylabel("Future Sites Funded (Count)", color="#1f77b4", fontsize=9)
-    ax2_left.set_title("Future Sites Funded & % Savings", fontsize=9)
+    ax2_left.set_title("Future Sites Funded & % Savings", fontsize=12)
 
     # Add labels inside the bars
     for bar, value in zip(bars_left, values_left):
