@@ -92,7 +92,7 @@ with col_left:
         email = "No user ID found"
 
     if new_build or competitor_pricing:
-        insert_data(user_id, new_build, competitor_pricing)
+        insert_data(email, new_build, competitor_pricing)
 
     # Budget Calculations
     competitor_budget = new_build * competitor_pricing
