@@ -150,7 +150,7 @@ with col_chart1:
     # Add labels inside the bars
     for bar, value in zip(bars, values):
         ax1.text(bar.get_x() + bar.get_width()/2, bar.get_height() - (bar.get_height()*0.15),
-                 f"${value:,.2f}", ha='center', fontsize=7, fontweight='bold', color='white', va='top')
+                 f"${value:,.0f}", ha='center', fontsize=7, fontweight='bold', color='white', va='top')
 
     st.pyplot(fig1)
 
@@ -180,7 +180,7 @@ with col_chart2:
         if value > 0:
             ax2_left.text(bar.get_x() + bar.get_width()/2, 
                           bar.get_height() - (bar.get_height() * 0.15),
-                          f"{value:.2f}%", ha='center', fontsize=7, fontweight='bold', color='white', va='top')
+                          f"{value:.0f}%", ha='center', fontsize=7, fontweight='bold', color='white', va='top')
 
     for bar, value in zip(bars_right, values_right):
         if value > 0:
