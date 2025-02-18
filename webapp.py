@@ -125,9 +125,9 @@ with col_right:
 
     st.markdown(f'<div class="custom-table">{df_table1.to_html(index=False, escape=False)}</div>', unsafe_allow_html=True)
 
-    # Define function to highlight "Budget Saved" and "% Savings" columns
+    # Define function to highlight "Budget Saved" and "% Savings" columns with increased font size
     def highlight_green(val):
-        return "background-color: #56e356; font-weight: bold;" if "$" in str(val) or "%" in str(val) else ""
+        return "background-color: #56e356; font-weight: bold; font-size: 110%;" if "$" in str(val) or "%" in str(val) else ""
 
     # Table 2: Budget Comparisons
     df_table2 = pd.DataFrame({
