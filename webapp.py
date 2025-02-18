@@ -32,7 +32,7 @@ def get_user_ip():
         return "Unknown"
     
 # Function to insert data into MySQL table
-def insert_data(user_id, site_number, comp_price):
+def insert_data(email, site_number, comp_price):
     conn = mysql.connector.connect(
         host="gcbdallas.caqfykoqtrvk.us-east-1.rds.amazonaws.com",
         user="Dallas_2024",
@@ -89,7 +89,7 @@ with col_left:
     except Exception:
         email = "Not found"
     if new_build or competitor_pricing:
-        insert_data(user_id, new_build, competitor_pricing)
+        insert_data(email, new_build, competitor_pricing)
 
     # Budget Calculations
     competitor_budget = new_build * competitor_pricing
