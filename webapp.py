@@ -43,7 +43,7 @@ st.title("Budget Calculator")
 # User Inputs in Yellow Highlighted Table (Table 1)
 st.subheader("Enter Input Values")
 # Extract `user_id` from the URL (e.g., ?user_id=1234abcd)
-user_id = st.query_params.get_all("user_id")
+user_id = st.query_params.get_all("session_id")
 try:
     email = get_email_by_user_id(user_id[0])
 except Exception:
