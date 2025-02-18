@@ -38,7 +38,7 @@ def insert_data(user_id, site_number, comp_price):
 # Static GCB Quote
 GCB_QUOTE = 5500  # Static value email = get_email_by_user_id(user_id, conn)
 
-st.title("Verizon Budget Calculator")
+st.title("Budget Calculator")
 
 # User Inputs in Yellow Highlighted Table (Table 1)
 st.subheader("Enter Input Values")
@@ -54,7 +54,7 @@ col1, col2 = st.columns([1, 1])
 
 with col1:
     # Display Table 1
-    st.subheader("Table 1: Verizon Budget per Site")
+    st.subheader("Verizon Budget per Site")
     table1 = {
         "Market": ["Market 1"],
         "No. Of Sites": [new_build],
