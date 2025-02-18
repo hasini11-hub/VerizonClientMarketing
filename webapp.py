@@ -9,7 +9,7 @@ from PIL import Image
 # Set page to full-screen layout
 st.set_page_config(layout="wide")
 # Add logo to the top-left corner
-st.image("logo.png", width=100)  # Adjust width as needed
+st.image("logo.png", width=200)  # Adjust width as needed
 
 # Custom CSS for reducing input box width
 st.markdown(
