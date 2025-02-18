@@ -104,8 +104,8 @@ with col_right:
 
     df_table1 = pd.DataFrame({
         "No. of Sites": [new_build],
-        "Competitor Pricing ($)": [f"${competitor_pricing:,.2f}"],
-        "GCB Quote ($)": [f"${GCB_QUOTE:,.2f}"]
+        "Competitor Pricing ($)": [f"${competitor_pricing:,.0f}"],
+        "GCB Quote ($)": [f"${GCB_QUOTE:,.0f}"]
     })
     
     st.markdown(df_table1.to_html(index=False, escape=False), unsafe_allow_html=True)
@@ -115,9 +115,9 @@ with col_right:
         return "background-color: #56e356; font-weight: bold;" if "$" in str(val) or "%" in str(val) else ""
 
     df_table2 = pd.DataFrame({
-        "Competitor Budget ($)": [f"${competitor_budget:,.2f}"],
-        "GCB Budget ($)": [f"${gcb_budget:,.2f}"],
-        "Budget Saved ($)": [f"${budget_saved:,.2f}"],
+        "Competitor Budget ($)": [f"${competitor_budget:,.0f}"],
+        "GCB Budget ($)": [f"${gcb_budget:,.0f}"],
+        "Budget Saved ($)": [f"${budget_saved:,.0f}"],
         "% Savings": [f"{percent_savings:.2f}%"]
     })
 
