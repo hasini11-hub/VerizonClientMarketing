@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
 import mysql.connector
+import requests
 
 # Set page to full-screen layout
 st.set_page_config(layout="wide")
@@ -19,6 +20,14 @@ def get_email_by_user_id(user_id):
     email = cursor.fetchone()
     cursor.close()
     return email[0] if email else None
+def get_user_ip():
+    """Fetch the public IP of the user"""
+    try:
+        ip = requests.get("https://api64.ipify.org?format=json").json()["ip"]
+        return ip
+    except:
+        return "Unknown"
+user_ip = get_user_ip()
 
 # Function to insert data into MySQL table
 def insert_data(email, site_number, comp_price):
@@ -30,8 +39,10 @@ def insert_data(email, site_number, comp_price):
     )
     
     cursor = conn.cursor()
-    cursor.execute("INSERT INTO clientInputs (email, siteNumber, compPrice) VALUES (%s, %s, %s)", 
-                   (email if email else "cantgetemail", site_number, comp_price))
+    user_ip = get_user_ip()
+
+    cursor.execute("INSERT INTO clientInputs (email, siteNumber, compPrice, userIP) VALUES (%s, %s, %s, %s)", 
+                   (email if email else "cantgetemail", site_number, comp_price, user_ip))
     conn.commit()
     conn.close()
 
