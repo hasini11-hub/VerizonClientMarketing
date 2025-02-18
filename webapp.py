@@ -155,7 +155,7 @@ with col_middle:
 # Right column: Display the Logo
 with col_right:
     # Adjust the size of the logo and position it to the right
-    st.image("path/to/logo.png", width=150)  # Adjust width as needed
+    st.image("logo.png", width=150)  # Adjust width as needed
 
 # Footer
 st.markdown(
