@@ -15,7 +15,7 @@ def get_email_by_user_id(user_id):
         database="VerizonClientMarketing"
     )
     cursor = conn.cursor()
-    cursor.execute("SELECT email FROM links WHERE link LIKE %s", ("%"+user_id+"%",))
+    cursor.execute("SELECT email FROM links WHERE link LIKE %s", (f"%{user_id}%",))
     email = cursor.fetchone()
     cursor.close()
     return email[0] if email else None
@@ -44,11 +44,10 @@ st.title("Verizon Budget Calculator")
 st.subheader("Enter Input Values")
 # Extract `user_id` from the URL (e.g., ?user_id=1234abcd)
 user_id = st.query_params.get_all("user_id")
-st.write(user_id[0])
-email = get_email_by_user_id(user_id)
+email = get_email_by_user_id(user_id[0])
 new_build = st.number_input("No.Of Sites", min_value=1, step=1, value=150)
 competitor_pricing = st.number_input("Competitor Pricing ($)", min_value=1, step=1, value=10000)
-
+st.write(email)
 if st.button("Get Quote") or new_build or competitor_pricing:
     insert_data(user_id, new_build, competitor_pricing)
 # Layout for side-by-side tables and graphs
