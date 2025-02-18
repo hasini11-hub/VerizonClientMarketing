@@ -102,18 +102,34 @@ with col_left:
 with col_right:
     st.subheader("Budget Summary")
 
+    # Custom CSS for increasing table size
+    st.markdown(
+        """
+        <style>
+        .custom-table {
+            width: 140% !important;  /* Increase width by 40% */
+            margin-left: auto;
+            margin-right: auto;
+        }
+        </style>
+        """,
+        unsafe_allow_html=True
+    )
+
+    # Table 1: Basic Site & Pricing Info
     df_table1 = pd.DataFrame({
         "No. of Sites": [new_build],
         "Competitor Pricing ($)": [f"${competitor_pricing:,.0f}"],
         "GCB Quote ($)": [f"${GCB_QUOTE:,.0f}"]
     })
-    
-    st.markdown(df_table1.to_html(index=False, escape=False), unsafe_allow_html=True)
 
-   # Define function to highlight "Budget Saved" and "% Savings" columns
+    st.markdown(f'<div class="custom-table">{df_table1.to_html(index=False, escape=False)}</div>', unsafe_allow_html=True)
+
+    # Define function to highlight "Budget Saved" and "% Savings" columns
     def highlight_green(val):
         return "background-color: #56e356; font-weight: bold;" if "$" in str(val) or "%" in str(val) else ""
 
+    # Table 2: Budget Comparisons
     df_table2 = pd.DataFrame({
         "Competitor Budget ($)": [f"${competitor_budget:,.0f}"],
         "GCB Budget ($)": [f"${gcb_budget:,.0f}"],
@@ -124,16 +140,17 @@ with col_right:
     # Apply styling
     df_table2_styled = df_table2.style.map(highlight_green, subset=["Budget Saved ($)", "% Savings"]).hide(axis="index")
 
-    # Display the styled DataFrame in Streamlit
-    st.markdown(df_table2_styled.to_html(index=False, escape=False), unsafe_allow_html=True)
+    # Display the styled DataFrame in Streamlit with increased width
+    st.markdown(f'<div class="custom-table">{df_table2_styled.to_html(index=False, escape=False)}</div>', unsafe_allow_html=True)
 
-
+    # Table 3: Future Site Funding
     df_table3 = pd.DataFrame({
         "Future Site Count Funded": [future_sites_funded],
         "% Savings on Buildout Cost": [f"{percent_savings:.2f}%"]
     })
-    
-    st.markdown(df_table3.to_html(index=False, escape=False), unsafe_allow_html=True)
+
+    st.markdown(f'<div class="custom-table">{df_table3.to_html(index=False, escape=False)}</div>', unsafe_allow_html=True)
+
 
 # Align Charts Side by Side
 col_chart1, col_chart2 = st.columns(2)
