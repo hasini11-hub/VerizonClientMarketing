@@ -134,7 +134,7 @@ with col_right:
         "Competitor Budget ($)": [f"${competitor_budget:,.0f}"],
         "GCB Budget ($)": [f"${gcb_budget:,.0f}"],
         "Budget Saved ($)": [f"${budget_saved:,.0f}"],
-        "% Savings": [f"{percent_savings:.2f}%"]
+        "% Savings": [f"{percent_savings:.0f}%"]
     })
 
     # Apply styling
@@ -146,7 +146,7 @@ with col_right:
     # Table 3: Future Site Funding
     df_table3 = pd.DataFrame({
         "Future Site Count Funded": [future_sites_funded],
-        "% Savings on Buildout Cost": [f"{percent_savings:.2f}%"]
+        "% Savings on Buildout Cost": [f"{percent_savings:.0f}%"]
     })
 
     st.markdown(f'<div class="custom-table">{df_table3.to_html(index=False, escape=False)}</div>', unsafe_allow_html=True)
@@ -197,7 +197,7 @@ with col_chart2:
         if value > 0:
             ax2_left.text(bar.get_x() + bar.get_width()/2, 
                           bar.get_height() - (bar.get_height() * 0.15),
-                          f"{value:.2f}%", ha='center', fontsize=7, fontweight='bold', color='white', va='top')
+                          f"{value:.0f}%", ha='center', fontsize=7, fontweight='bold', color='white', va='top')
 
     for bar, value in zip(bars_right, values_right):
         if value > 0:
