@@ -16,7 +16,7 @@ st.markdown(
     """
     <style>
     div[data-baseweb="input"] {
-        width: 80% !important; 
+        width: 100% !important; 
         margin-bottom: 5px;
     }
     </style>
