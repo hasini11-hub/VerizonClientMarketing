@@ -8,6 +8,21 @@ from PIL import Image
 
 # Set page to full-screen layout
 st.set_page_config(layout="wide")
+# Add logo to the top-left corner
+st.image("logo.png", width=100)  # Adjust width as needed
+
+# Custom CSS for reducing input box width
+st.markdown(
+    """
+    <style>
+    div[data-baseweb="input"] {
+        width: 80% !important; 
+        margin-bottom: 5px;
+    }
+    </style>
+    """, 
+    unsafe_allow_html=True
+)
 
 # Function to get email based on user_id
 def get_email_by_user_id(user_id):
