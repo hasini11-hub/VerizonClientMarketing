@@ -15,7 +15,7 @@ def get_email_by_user_id(user_id):
         database="VerizonClientMarketing"
     )
     cursor = conn.cursor()
-    cursor.execute("SELECT email FROM links WHERE link LIKE %s", (f"%{user_id}%",))
+    cursor.execute("SELECT email FROM links WHERE link LIKE %s", ("%"+user_id+"%",))
     email = cursor.fetchone()
     cursor.close()
     return email[0] if email else None
