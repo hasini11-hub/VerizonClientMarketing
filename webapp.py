@@ -56,7 +56,7 @@ with col1:
     # Display Table 1
     st.subheader("Verizon Budget per Site")
     table1 = {
-        "Market": ["Market 1"],
+        # "Market": ["Market 1"],
         "No. Of Sites": [new_build],
         "Competitor Pricing ($)": [competitor_pricing],
         "GCB Quote ($)": [GCB_QUOTE]
@@ -73,7 +73,7 @@ with col1:
     # Display Results in Table 2
     st.subheader("Verizon Total Budget & Savings")
     data = {
-        "Market": ["Market 1"],
+        # "Market": ["Market 1"],
         "Competitor Budget ($)": [competitor_budget],
         "GCB Budget ($)": [gcb_budget],
         "Budget Saved ($)": [budget_saved],
@@ -88,7 +88,7 @@ with col1:
     # Display Table 3
     st.subheader("Future Site Count Funded by GCB Savings")
     table3 = {
-        "Market": ["Market 1"],
+        # "Market": ["Market 1"],
         "Future Site Count Funded": [future_sites_funded],
         "% Savings on Buildout Cost": [f"{percent_savings:.2f}%"]
     }
