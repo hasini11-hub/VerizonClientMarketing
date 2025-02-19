@@ -219,9 +219,9 @@ with col_chart2:
 st.markdown(
     """
     <hr style="margin-top: 30px;">
-    <p style="text-align: center; font-size: 15px; font-weight: bold;">
+    <p style="text-align: center; font-size: 12px; font-weight: bold;">
         GCB Services L.L.C. CONFIDENTIAL and PROPRIETARY . <br>
-        THE ABOVE NUMBER ARE FOR ILLUSTRATIVE PURPOSE ONLY .FINAL QUOTE MAY VARY BASED ON MARKET
+         The above numbers are for illustrative purposes only. Final GCB quote may vary based on market.
     </p>
     """, 
     unsafe_allow_html=True
