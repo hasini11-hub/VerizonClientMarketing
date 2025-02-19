@@ -58,14 +58,14 @@ GCB_QUOTE = 5606
 col_left, col_middle, col_right = st.columns([1, 2, 1])
 
 with col_left:
-    st.subheader("Calculate Savings")
+    st.subheader(" Customer Input")
 
     new_build = st.number_input(
-        "No. of Sites", min_value=1, step=1, value=150, format="%d"
+        "Enter the No. of Sites", min_value=1, step=1, value=150, format="%d"
     )
 
     competitor_pricing = st.number_input(
-        "Current Pricing ($)", min_value=1, step=1, value=10000, format="%d"
+        "Enter Current Pricing ($)", min_value=1, step=1, value=10000, format="%d"
     )
 
     user_id = st.query_params.get_all("session_id")
