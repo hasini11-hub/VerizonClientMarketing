@@ -155,7 +155,7 @@ with col_chart1:
     
     bars = ax1.bar(labels, values, color=["#1f77b4", "#ff7f0e", "#2ca02c"], width=0.5)
     ax1.set_ylabel("Amount ($)", fontsize=9)  # Set font size for the y-axis label
-    ax1.set_title("Budget Comparison", fontsize=14, color="#f5f5f5", pad=20)  # Title color and padding
+    ax1.set_title("Budget Comparison", fontsize=14, color="#cef5f1", pad=20)  # Title color and padding
     
     # Set background color for the title
     ax1.title.set_backgroundcolor("#ff7f0e")  # Background color for the title
@@ -190,7 +190,7 @@ with col_chart2:
     # Labels and Titles
     ax2_left.set_ylabel("% Savings", color="#ff7f0e", fontsize=9)
     ax2_right.set_ylabel("Future Sites Funded (Count)", color="#1f77b4", fontsize=9)
-    ax2_left.set_title("Future Sites Funded & % Savings", fontsize=14, color="#f5f5f5", pad=20)  # Title color and padding
+    ax2_left.set_title("Future Sites Funded & % Savings", fontsize=14, color="#cef5f1", pad=20)  # Title color and padding
 
     # Set background color for the title
     ax2_left.title.set_backgroundcolor("#ff7f0e")  # Background color for the title
