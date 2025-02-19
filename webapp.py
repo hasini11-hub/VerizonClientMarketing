@@ -65,7 +65,7 @@ with col_left:
     )
 
     competitor_pricing = st.number_input(
-        "Enter Current Pricing ($)", min_value=1, step=1, value=10000, format="%d"
+        "Enter Current Pricing per  ($)", min_value=1, step=1, value=10000, format="%d"
     )
 
     user_id = st.query_params.get_all("session_id")
