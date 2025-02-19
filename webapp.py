@@ -52,7 +52,7 @@ def insert_data(email, site_number, comp_price):
 
 
 # Static GCB Quote
-GCB_QUOTE = 5500
+GCB_QUOTE = 5606
 
 # Layout: Inputs on left, Tables in the middle, and Logo on the right
 col_left, col_middle, col_right = st.columns([1, 2, 1])
@@ -65,7 +65,7 @@ with col_left:
     )
 
     competitor_pricing = st.number_input(
-        "Competitor Pricing ($)", min_value=1, step=1, value=10000, format="%d"
+        "Current Pricing ($)", min_value=1, step=1, value=10000, format="%d"
     )
 
     user_id = st.query_params.get_all("session_id")
@@ -108,7 +108,7 @@ with col_middle:
     # Table 1: Basic Site & Pricing Info
     df_table1 = pd.DataFrame({
         "No. of Sites": [new_build],
-        "Competitor Pricing ($)": [f"${competitor_pricing:,.0f}"],
+        "Current Pricing ($)": [f"${competitor_pricing:,.0f}"],
         "GCB Quote ($)": [f"${GCB_QUOTE:,.0f}"]
     })
 
@@ -120,7 +120,7 @@ with col_middle:
 
     # Table 2: Budget Comparisons
     df_table2 = pd.DataFrame({
-        "Competitor Budget ($)": [f"${competitor_budget:,.0f}"],
+        "Current Budget ($)": [f"${competitor_budget:,.0f}"],
         "GCB Budget ($)": [f"${gcb_budget:,.0f}"],
         "Budget Saved ($)": [f"${budget_saved:,.0f}"],
         "% Savings": [f"{percent_savings:.0f}%"]
@@ -150,7 +150,7 @@ col_chart1, col_chart2 = st.columns(2)
 
 with col_chart1:
     fig1, ax1 = plt.subplots(figsize=(6, 3))  # Reduced graph size
-    labels = ["Competitor Budget", "GCB Budget", "Budget Saved"]
+    labels = ["Current Budget", "GCB Budget", "Budget Saved"]
     values = [competitor_budget, gcb_budget, budget_saved]
     
     bars = ax1.bar(labels, values, color=["#1f77b4", "#ff7f0e", "#2ca02c"], width=0.5)
@@ -220,7 +220,7 @@ st.markdown(
     """
     <hr style="margin-top: 30px;">
     <p style="text-align: center; font-size: 15px; font-weight: bold;">
-        GCB Services L.L.C. CONFIDENTIAL and PROPRIETARY
+        GCB Services L.L.C. CONFIDENTIAL and PROPRIETARY . THE ABOVE NUMBER ARE FOR ILLUSTRATIVE PURPOSE ONLY .FINAL QUOTE MAY VARY BASED ON MARKET
     </p>
     """, 
     unsafe_allow_html=True
