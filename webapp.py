@@ -148,6 +148,8 @@ with col_right:
 # Align Charts Side by Side
 col_chart1, col_chart2 = st.columns(2)
 
+import matplotlib.ticker as ticker
+
 with col_chart1:
     fig1, ax1 = plt.subplots(figsize=(6, 3))  # Reduced graph size
     labels = ["Competitor Budget", "GCB Budget", "Budget Saved"]
@@ -161,6 +163,12 @@ with col_chart1:
     for bar, value in zip(bars, values):
         ax1.text(bar.get_x() + bar.get_width()/2, bar.get_height() - (bar.get_height()*0.15),
                  f"${value:,.0f}", ha='center', fontsize=7, fontweight='bold', color='white', va='top')
+
+    # Set the tick format to prevent scientific notation
+    ax1.yaxis.set_major_formatter(ticker.FuncFormatter(lambda x, _: f"${x:,.0f}"))
+    ax1.tick_params(axis='y', labelsize=9)  # Optional: adjust the size of the y-axis labels
+
+    st.pyplot(fig1)
 
     st.pyplot(fig1)
 
