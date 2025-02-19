@@ -57,7 +57,7 @@ GCB_QUOTE = 5500
 # Layout: Inputs on left, Tables in the middle, and Logo on the right
 col_left, col_middle, col_right = st.columns([1, 2, 1])
 
-with col_left:
+with col_middle:
     st.subheader("Calculate savings")
 
     new_build = st.number_input(
@@ -88,7 +88,7 @@ with col_left:
     future_sites_funded = int(budget_saved / GCB_QUOTE) if GCB_QUOTE != 0 else 0
 
 # Middle column: Data Tables and Charts
-with col_middle:
+with col_right:
     st.subheader("Budget Summary")
 
     # Custom CSS for increasing table size
@@ -141,7 +141,7 @@ with col_middle:
     st.markdown(f'<div class="custom-table">{df_table3.to_html(index=False, escape=False)}</div>', unsafe_allow_html=True)
 
 # Right column: Display the Logo
-with col_right:
+with col_left:
     # Adjust the size of the logo and position it to the right
     st.image("logo.png", width=200)  # Adjust width as needed
 
