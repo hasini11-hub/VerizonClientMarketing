@@ -220,7 +220,7 @@ st.markdown(
     """
     <hr style="margin-top: 30px;">
     <p style="text-align: center; font-size: 15px; font-weight: bold;">
-        GCB Services L.L.C. CONFIDENTIAL and PROPRIETARY . 
+        GCB Services L.L.C. CONFIDENTIAL and PROPRIETARY . <br>
         THE ABOVE NUMBER ARE FOR ILLUSTRATIVE PURPOSE ONLY .FINAL QUOTE MAY VARY BASED ON MARKET
     </p>
     """, 
