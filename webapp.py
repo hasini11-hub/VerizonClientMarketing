@@ -6,8 +6,12 @@ import requests
 import io
 from PIL import Image
 
+title_logo = Image.open("title_logo.png") 
 # Set page to full-screen layout
-st.set_page_config(layout="wide")
+st.set_page_config(
+    page_title="GCB-Verizon Savings",
+    page_icon = title_logo,
+    layout="wide")
 # Add logo to the top-left corner
 
 # Function to get email based on user_id
