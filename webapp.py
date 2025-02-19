@@ -5,6 +5,7 @@ import mysql.connector
 import requests
 import io
 from PIL import Image
+import streamlit.components.v1 as components
 
 title_logo = Image.open("title_logo.png") 
 # Set page to full-screen layout
@@ -28,12 +29,20 @@ def get_email_by_user_id(user_id):
     return email[0] if email else None
 
 def get_user_ip():
-    """Fetch the public IP of the user"""
-    try:
-        ip = requests.get("https://api64.ipify.org?format=json").json()["ip"]
-        return ip
-    except:
-        return "Unknown"
+    """Fetch the public IP of the user using JavaScript."""
+    ip = components.html("""
+        <script type="text/javascript">
+        fetch('https://api64.ipify.org?format=json')
+        .then(response => response.json())
+        .then(data => {
+            window.parent.postMessage({type: 'set_ip', ip: data.ip}, '*');
+        });
+        </script>
+    """, height=0, width=0)
+
+    # Waiting for the response to get the IP from the frontend
+    ip = st.session_state.get('user_ip', 'Unknown')
+    return ip
     
 # Function to insert data into MySQL table
 def insert_data(email, site_number, comp_price):
