@@ -58,7 +58,7 @@ GCB_QUOTE = 5500
 col_left, col_middle, col_right = st.columns([1, 2, 1])
 
 with col_left:
-    st.subheader("Calculate savings")
+    st.subheader("Calculate Savings")
 
     new_build = st.number_input(
         "No. of Sites", min_value=1, step=1, value=150, format="%d"
@@ -157,6 +157,9 @@ with col_chart1:
     ax1.set_ylabel("Amount ($)", fontsize=9)  # Set font size for the y-axis label
     ax1.set_title("Budget Comparison", fontsize=14)
 
+    # Set background color for the title
+    ax1.title.set_backgroundcolor("#ff7f0e")  # Background color for the title
+
     # Add labels inside the bars
     for bar, value in zip(bars, values):
         ax1.text(bar.get_x() + bar.get_width()/2, bar.get_height() - (bar.get_height()*0.15),
@@ -187,6 +190,9 @@ with col_chart2:
     ax2_left.set_ylabel("% Savings", color="#ff7f0e", fontsize=9)
     ax2_right.set_ylabel("Future Sites Funded (Count)", color="#1f77b4", fontsize=9)
     ax2_left.set_title("Future Sites Funded & % Savings", fontsize=14)
+
+    # Set background color for the title
+    ax2_left.title.set_backgroundcolor("#ff7f0e")  # Background color for the title
 
     # Add labels inside the bars
     for bar, value in zip(bars_left, values_left):
