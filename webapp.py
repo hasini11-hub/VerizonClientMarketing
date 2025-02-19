@@ -12,15 +12,7 @@ st.set_page_config(
     page_title="GCB-Verizon Savings",
     page_icon = title_logo,
     layout="wide")
-# Add logo to the top-left corner
-st.markdown(
-    """
-    <script>
-        document.title = "GCB-Verizon Savings";
-    </script>
-    """,
-    unsafe_allow_html=True
-)
+
 # Function to get email based on user_id
 def get_email_by_user_id(user_id):
     conn = mysql.connector.connect(
