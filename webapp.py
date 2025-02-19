@@ -154,7 +154,7 @@ with col_chart1:
     values = [competitor_budget, gcb_budget, budget_saved]
     
     bars = ax1.bar(labels, values, color=["#1f77b4", "#ff7f0e", "#2ca02c"], width=0.5)
-    ax1.set_ylabel("Amount ($)")
+    ax1.set_ylabel("Amount ($)", fontsize=9)  # Set font size for the y-axis label
     ax1.set_title("Budget Comparison", fontsize=14)
 
     # Add labels inside the bars
