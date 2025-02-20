@@ -73,6 +73,14 @@ col_left, col_middle, col_right = st.columns([1, 2, 1])
 st.markdown(
     """
     <style>
+        .input-wrapper {
+            padding: 15px;
+            border: 2px solid #4CAF50;
+            border-radius: 10px;
+            background-color: #f9f9f9;
+            margin-bottom: 15px;
+            text-align: center;
+        }
         .stTextInput, .stNumberInput {
             width: 100% !important;
         }
@@ -80,15 +88,12 @@ st.markdown(
             border: 2px solid #4CAF50 !important;
             border-radius: 5px !important;
         }
-        .input-container {
-            padding: 15px;
-            border: 2px solid #ddd;
-            border-radius: 10px;
-            background-color: #f9f9f9;
-            margin-bottom: 15px;
-        }
         .stNumberInput label {
             font-weight: bold !important;
+        }
+        h3 {
+            margin-top: 0;
+            margin-bottom: 15px;
         }
     </style>
     """,
@@ -96,20 +101,19 @@ st.markdown(
 )
 
 with col_left:
-    st.markdown("<h3 style='text-align: center; color: #4CAF50;'>Customer Input</h3>", unsafe_allow_html=True)
+    st.markdown('<div class="input-wrapper">', unsafe_allow_html=True)
 
-    with st.container():
-        st.markdown('<div class="input-container">', unsafe_allow_html=True)
+    st.markdown("<h3 style='color: #4CAF50;'>Customer Input</h3>", unsafe_allow_html=True)
 
-        new_build = st.number_input(
-            "**Enter the No. of Sites**", min_value=1, step=1, value=1000, format="%d"
-        )
+    new_build = st.number_input(
+        "**Enter the No. of Sites**", min_value=1, step=1, value=1000, format="%d"
+    )
 
-        competitor_pricing = st.number_input(
-            "**Enter Current Pricing Per Site ($)**", min_value=1, step=1, value=10000, format="%d"
-        )
+    competitor_pricing = st.number_input(
+        "**Enter Current Pricing Per Site ($)**", min_value=1, step=1, value=10000, format="%d"
+    )
 
-        st.markdown("</div>", unsafe_allow_html=True)
+    st.markdown('</div>', unsafe_allow_html=True)
 
     # Extract user_id and display email
     user_id = st.query_params.get_all("session_id")
