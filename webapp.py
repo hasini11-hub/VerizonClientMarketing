@@ -82,6 +82,7 @@ st.markdown(
         }
         .stNumberInput label {
             font-weight: bold !important;
+            font-size: 16px !important;  /* Adjust the label font size */
         }
         h3 {
             text-align: center;
