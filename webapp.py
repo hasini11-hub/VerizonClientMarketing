@@ -66,53 +66,71 @@ def insert_data(email, site_number, comp_price):
 # Static GCB Quote
 GCB_QUOTE = 5606
 
+
+# Layout: Inputs on left, Tables in the middle, and Logo on the right
+col_left, col_middle, col_right = st.columns([1, 2, 1])
+
 # Custom CSS for styling inputs and layout
 st.markdown(
     """
     <style>
+        /* Ensure full-width input fields */
         .stTextInput, .stNumberInput {
-            width: 100% !important;  /* Ensure full width */
+            width: 100% !important;
         }
+
+        /* Green border and rounded corners for input fields */
         .stNumberInput > div {
-            border: 2px solid #4CAF50 !important;  /* Green border for input boxes */
+            border: 2px solid #4CAF50 !important;
             border-radius: 5px !important;
+            padding: 5px !important;
         }
+
+        /* Container styling for input section */
         .input-container {
-            padding: 15px;
+            padding: 20px;
             border: 2px solid #ddd;
             border-radius: 10px;
             background-color: #f9f9f9;
             margin-bottom: 15px;
         }
-        .user-email {
-            font-size: 14px;
+
+        /* Centered header with improved spacing */
+        .customer-header {
+            font-size: 22px;
             font-weight: bold;
-            color: #333;
-            margin-top: 10px;
+            color: #4CAF50;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        /* Bold labels for better readability */
+        .bold-label {
+            font-weight: bold;
+            font-size: 16px;
+            margin-bottom: 5px;
+            display: block;
+            text-align: left;
         }
     </style>
     """,
     unsafe_allow_html=True,
 )
 
-# Layout: Inputs on left, Tables in the middle, and Logo on the right
-col_left, col_middle, col_right = st.columns([1, 2, 1])
-
 with col_left:
-    st.markdown("<h3 style='text-align: center; color: #4CAF50;'>Customer Input</h3>", unsafe_allow_html=True)
+    st.markdown('<p class="customer-header">Customer Input</p>', unsafe_allow_html=True)
 
     with st.container():
         st.markdown('<div class="input-container">', unsafe_allow_html=True)
 
-        new_build = st.number_input(
-            "Enter the No. of Sites", min_value=1, step=1, value=1000, format="%d"
-        )
+        # Bold labels for inputs
+        st.markdown('<label class="bold-label">Enter the No. of Sites</label>', unsafe_allow_html=True)
+        new_build = st.number_input("", min_value=1, step=1, value=1000, format="%d")
 
-        competitor_pricing = st.number_input(
-            "Enter Current Pricing Per Site ($)", min_value=1, step=1, value=10000, format="%d"
-        )
+        st.markdown('<label class="bold-label">Enter Current Pricing Per Site ($)</label>', unsafe_allow_html=True)
+        competitor_pricing = st.number_input("", min_value=1, step=1, value=10000, format="%d")
 
-        st.markdown("</div>", unsafe_allow_html=True)
+        st.markdown("</div>", unsafe_allow_html=True)  # Closing the input container div
 
     # Extract user_id and display email
     user_id = st.query_params.get_all("session_id")
