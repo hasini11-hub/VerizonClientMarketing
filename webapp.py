@@ -70,15 +70,14 @@ GCB_QUOTE = 5606
 # Layout: Inputs on left, Tables in the middle, and Logo on the right
 col_left, col_middle, col_right = st.columns([1, 2, 1])
 
-# Custom CSS for styling inputs and layout
 st.markdown(
     """
     <style>
         .stTextInput, .stNumberInput {
-            width: 100% !important;  /* Ensure full width */
+            width: 100% !important;
         }
         .stNumberInput > div {
-            border: 2px solid #4CAF50 !important;  /* Green border for input boxes */
+            border: 2px solid #4CAF50 !important;
             border-radius: 5px !important;
         }
         .input-container {
@@ -87,6 +86,9 @@ st.markdown(
             border-radius: 10px;
             background-color: #f9f9f9;
             margin-bottom: 15px;
+        }
+        .stNumberInput label {
+            font-weight: bold !important;
         }
     </style>
     """,
@@ -100,11 +102,11 @@ with col_left:
         st.markdown('<div class="input-container">', unsafe_allow_html=True)
 
         new_build = st.number_input(
-            "Enter the No. of Sites", min_value=1, step=1, value=1000, format="%d"
+            "**Enter the No. of Sites**", min_value=1, step=1, value=1000, format="%d"
         )
 
         competitor_pricing = st.number_input(
-            "Enter Current Pricing Per Site ($)", min_value=1, step=1, value=10000, format="%d"
+            "**Enter Current Pricing Per Site ($)**", min_value=1, step=1, value=10000, format="%d"
         )
 
         st.markdown("</div>", unsafe_allow_html=True)
