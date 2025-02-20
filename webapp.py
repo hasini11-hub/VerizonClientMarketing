@@ -83,11 +83,9 @@ st.markdown(
         .stNumberInput label {
             font-weight: bold !important;
         }
-        .title {
+        h3 {
             text-align: center;
-            color: #4CAF50;
-            font-size: 24px;
-            font-weight: bold;
+            color: #4CAF50 !important;
         }
     </style>
     """,
@@ -95,7 +93,7 @@ st.markdown(
 )
 
 with col_left:
-    st.markdown('<p class="title">Customer Input</p>', unsafe_allow_html=True)
+    st.markdown("### <h3>Customer Input</h3>", unsafe_allow_html=True)
 
     new_build = st.number_input(
         "**Enter the No. of Sites**", min_value=1, step=1, value=1000, format="%d"
@@ -104,7 +102,7 @@ with col_left:
     competitor_pricing = st.number_input(
         "**Enter Current Pricing Per Site ($)**", min_value=1, step=1, value=10000, format="%d"
     )
-    
+
     # Extract user_id and display email
     user_id = st.query_params.get_all("session_id")
     if user_id:
