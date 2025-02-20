@@ -75,17 +75,21 @@ st.markdown(
     <style>
         .stTextInput, .stNumberInput {
             width: 100% !important;
+            font-size: 1.25em !important;  /* 25% bigger */
         }
         .stNumberInput > div {
             border: 2px solid #4CAF50 !important;
             border-radius: 5px !important;
+            font-size: 1.25em !important;  /* 25% bigger */
         }
         .stNumberInput label {
             font-weight: bold !important;
+            font-size: 1.25em !important;  /* 25% bigger */
         }
         h3 {
             text-align: center;
             color: #4CAF50 !important;
+            font-size: 1.25em !important;  /* 25% bigger */
         }
     </style>
     """,
