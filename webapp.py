@@ -66,20 +66,55 @@ def insert_data(email, site_number, comp_price):
 # Static GCB Quote
 GCB_QUOTE = 5606
 
+# Custom CSS for styling inputs and layout
+st.markdown(
+    """
+    <style>
+        .stTextInput, .stNumberInput {
+            width: 100% !important;  /* Ensure full width */
+        }
+        .stNumberInput > div {
+            border: 2px solid #4CAF50 !important;  /* Green border for input boxes */
+            border-radius: 5px !important;
+        }
+        .input-container {
+            padding: 15px;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            background-color: #f9f9f9;
+            margin-bottom: 15px;
+        }
+        .user-email {
+            font-size: 14px;
+            font-weight: bold;
+            color: #333;
+            margin-top: 10px;
+        }
+    </style>
+    """,
+    unsafe_allow_html=True,
+)
+
 # Layout: Inputs on left, Tables in the middle, and Logo on the right
 col_left, col_middle, col_right = st.columns([1, 2, 1])
 
 with col_left:
-    st.subheader(" Customer Input")
+    st.markdown("<h3 style='text-align: center; color: #4CAF50;'>Customer Input</h3>", unsafe_allow_html=True)
 
-    new_build = st.number_input(
-        "Enter the No. of Sites", min_value=1, step=1, value=150, format="%d"
-    )
+    with st.container():
+        st.markdown('<div class="input-container">', unsafe_allow_html=True)
 
-    competitor_pricing = st.number_input(
-        "Enter Current Pricing Per Site ($)", min_value=1, step=1, value=10000, format="%d"
-    )
+        new_build = st.number_input(
+            "Enter the No. of Sites", min_value=1, step=1, value=1000, format="%d"
+        )
 
+        competitor_pricing = st.number_input(
+            "Enter Current Pricing Per Site ($)", min_value=1, step=1, value=10000, format="%d"
+        )
+
+        st.markdown("</div>", unsafe_allow_html=True)
+
+    # Extract user_id and display email
     user_id = st.query_params.get_all("session_id")
     if user_id:
         try:
@@ -89,6 +124,9 @@ with col_left:
     else:
         email = "No user ID found"
 
+    st.markdown(f'<p class="user-email">User Email: {email}</p>', unsafe_allow_html=True)
+
+    # Save data if inputs are provided
     if new_build or competitor_pricing:
         insert_data(email, new_build, competitor_pricing)
 
