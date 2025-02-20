@@ -74,43 +74,25 @@ col_left, col_middle, col_right = st.columns([1, 2, 1])
 st.markdown(
     """
     <style>
-        /* Ensure full-width input fields */
         .stTextInput, .stNumberInput {
-            width: 100% !important;
+            width: 100% !important;  /* Ensure full width */
         }
-
-        /* Green border and rounded corners for input fields */
         .stNumberInput > div {
-            border: 2px solid #4CAF50 !important;
+            border: 2px solid #4CAF50 !important;  /* Green border for input boxes */
             border-radius: 5px !important;
-            padding: 5px !important;
         }
-
-        /* Container styling for input section */
         .input-container {
-            padding: 20px;
+            padding: 15px;
             border: 2px solid #ddd;
             border-radius: 10px;
             background-color: #f9f9f9;
             margin-bottom: 15px;
         }
-
-        /* Centered header with improved spacing */
-        .customer-header {
-            font-size: 22px;
+        .user-email {
+            font-size: 14px;
             font-weight: bold;
-            color: #4CAF50;
-            text-align: center;
-            margin-bottom: 15px;
-        }
-
-        /* Bold labels for better readability */
-        .bold-label {
-            font-weight: bold;
-            font-size: 16px;
-            margin-bottom: 5px;
-            display: block;
-            text-align: left;
+            color: #333;
+            margin-top: 10px;
         }
     </style>
     """,
@@ -118,19 +100,20 @@ st.markdown(
 )
 
 with col_left:
-    st.markdown('<p class="customer-header">Customer Input</p>', unsafe_allow_html=True)
+    st.markdown("<h3 style='text-align: center; color: #4CAF50;'>Customer Input</h3>", unsafe_allow_html=True)
 
     with st.container():
         st.markdown('<div class="input-container">', unsafe_allow_html=True)
 
-        # Bold labels for inputs
-        st.markdown('<label class="bold-label">Enter the No. of Sites</label>', unsafe_allow_html=True)
-        new_build = st.number_input("", min_value=1, step=1, value=1000, format="%d")
+        new_build = st.number_input(
+            "Enter the No. of Sites", min_value=1, step=1, value=1000, format="%d"
+        )
 
-        st.markdown('<label class="bold-label">Enter Current Pricing Per Site ($)</label>', unsafe_allow_html=True)
-        competitor_pricing = st.number_input("", min_value=1, step=1, value=10000, format="%d")
+        competitor_pricing = st.number_input(
+            "Enter Current Pricing Per Site ($)", min_value=1, step=1, value=10000, format="%d"
+        )
 
-        st.markdown("</div>", unsafe_allow_html=True)  # Closing the input container div
+        st.markdown("</div>", unsafe_allow_html=True)
 
     # Extract user_id and display email
     user_id = st.query_params.get_all("session_id")
