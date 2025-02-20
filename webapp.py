@@ -88,12 +88,6 @@ st.markdown(
             background-color: #f9f9f9;
             margin-bottom: 15px;
         }
-        .user-email {
-            font-size: 14px;
-            font-weight: bold;
-            color: #333;
-            margin-top: 10px;
-        }
     </style>
     """,
     unsafe_allow_html=True,
