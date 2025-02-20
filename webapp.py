@@ -124,8 +124,6 @@ with col_left:
     else:
         email = "No user ID found"
 
-    st.markdown(f'<p class="user-email">User Email: {email}</p>', unsafe_allow_html=True)
-
     # Save data if inputs are provided
     if new_build or competitor_pricing:
         insert_data(email, new_build, competitor_pricing)
