@@ -66,29 +66,33 @@ def insert_data(email, site_number, comp_price):
 # Static GCB Quote
 GCB_QUOTE = 5606
 
-# Custom CSS for styling inputs and layout
 st.markdown(
     """
     <style>
-        .stTextInput, .stNumberInput {
-            width: 100% !important;  /* Ensure full width */
+        /* Center the heading properly */
+        .customer-header {
+            text-align: center;
+            color: #4CAF50;
+            font-size: 22px;
+            font-weight: bold;
+            margin-bottom: 15px;
         }
-        .stNumberInput > div {
-            border: 2px solid #4CAF50 !important;  /* Green border for input boxes */
-            border-radius: 5px !important;
-        }
+
+        /* Container for input fields */
         .input-container {
             padding: 15px;
             border: 2px solid #ddd;
             border-radius: 10px;
             background-color: #f9f9f9;
-            margin-bottom: 15px;
+            width: 100%;
         }
-        .user-email {
-            font-size: 14px;
-            font-weight: bold;
-            color: #333;
-            margin-top: 10px;
+
+        /* Styling for input fields */
+        .stNumberInput > div {
+            border: 2px solid #4CAF50 !important;
+            border-radius: 5px !important;
+            padding: 5px;
+            width: 100% !important;
         }
     </style>
     """,
@@ -99,7 +103,8 @@ st.markdown(
 col_left, col_middle, col_right = st.columns([1, 2, 1])
 
 with col_left:
-    st.markdown("<h3 style='text-align: center; color: #4CAF50;'>Customer Input</h3>", unsafe_allow_html=True)
+    # Properly aligned header
+    st.markdown('<p class="customer-header">Customer Input</p>', unsafe_allow_html=True)
 
     with st.container():
         st.markdown('<div class="input-container">', unsafe_allow_html=True)
@@ -116,13 +121,7 @@ with col_left:
 
     # Extract user_id and display email
     user_id = st.query_params.get_all("session_id")
-    if user_id:
-        try:
-            email = get_email_by_user_id(user_id[0])
-        except Exception:
-            email = "Not found"
-    else:
-        email = "No user ID found"
+    email = "No user ID found" if not user_id else get_email_by_user_id(user_id[0])
 
     # Save data if inputs are provided
     if new_build or competitor_pricing:
